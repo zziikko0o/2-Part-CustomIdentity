@@ -1,0 +1,301 @@
+Implementation de Genesys SDK Cloud:
+
+
+- installer PureCLoud depuis Nu-Get
+
+- 1. Configurer appsettings.json
+
+  "Genesys": {
+    "ClientId": "your_client_id",
+    "ClientSecret": "your_client_secret",
+    "Region": "us_east_1"  // Choisissez la région appropriée
+  }
+}
+
+2. Configurer Program.cs (ou Startup.cs selon votre version)
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using PureCloudPlatform.Client.V2.Client;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Configuration Genesys
+var genesysConfig = builder.Configuration.GetSection("Genesys");
+var clientId = genesysConfig["ClientId"];
+var clientSecret = genesysConfig["ClientSecret"];
+var region = (PureCloudRegionHosts)Enum.Parse(typeof(PureCloudRegionHosts), genesysConfig["Region"]);
+
+// Ajouter le service Genesys
+builder.Services.AddSingleton(new GenesysService(clientId, clientSecret, region));
+
+var app = builder.Build();
+
+// Reste de la configuration...
+
+3. Créer un Service pour interagir avec l'API Genesys Cloud
+using PureCloudPlatform.Client.V2.Api;
+using PureCloudPlatform.Client.V2.Model;
+using PureCloudPlatform.Client.V2.Client;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+public class GenesysService
+{
+    private readonly string _clientId;
+    private readonly string _clientSecret;
+    private readonly PureCloudRegionHosts _region;
+
+    public GenesysService(string clientId, string clientSecret, PureCloudRegionHosts region)
+    {
+        _clientId = clientId;
+        _clientSecret = clientSecret;
+        _region = region;
+
+        // Configuration Genesys SDK
+        Configuration.Default.ApiClient.setBasePath(region);
+        Authenticate();
+    }
+
+    private void Authenticate()
+    {
+        var tokenInfo = Configuration.Default.ApiClient.PostToken(_clientId, _clientSecret);
+        Configuration.Default.AccessToken = tokenInfo.AccessToken;
+    }
+
+    public async Task<List<Assistant>> GetAssistantsAsync(string before = null, string after = null, int? pageSize = null, string name = null)
+    {
+        try
+        {
+            var apiInstance = new AgentAssistantsApi();
+            var result = await apiInstance.GetAssistantsAsync(before, after, null, pageSize?.ToString(), name);
+            return result.Entities;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erreur lors de l'appel de l'API Genesys: {ex.Message}");
+            throw;
+        }
+    }
+}
+
+
+4. Créer le Contrôleur pour exposer les API
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+[ApiController]
+[Route("api/[controller]")]
+public class AssistantsController : ControllerBase
+{
+    private readonly GenesysService _genesysService;
+
+    public AssistantsController(GenesysService genesysService)
+    {
+        _genesysService = genesysService;
+    }
+
+    // GET: api/Assistants
+    [HttpGet]
+    public async Task<IActionResult> GetAssistants([FromQuery] string before, [FromQuery] string after, [FromQuery] int? pageSize, [FromQuery] string name)
+    {
+        try
+        {
+            var assistants = await _genesysService.GetAssistantsAsync(before, after, pageSize, name);
+            return Ok(assistants);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Erreur lors de l'obtention des assistants: {ex.Message}");
+        }
+    }
+}
+
+
+
+
+Résumé des étapes à suivre :
+Configurer appsettings.json pour stocker les informations d'authentification et de configuration de Genesys Cloud.
+Configurer Program.cs pour enregistrer le service Genesys avec les informations de configuration.
+Créer un service qui encapsule la logique d'authentification et les appels à l'API Genesys Cloud.
+Créer un contrôleur qui utilise ce service pour fournir des données via une API RESTful.
+
+
+
+
+
+Exemple:
+3. Explication des Routes et Méthodes
+GET /api/v2/assistants : Récupère tous les assistants (paginés si nécessaire).
+POST /api/v2/assistants : Crée un nouvel assistant.
+GET /api/v2/assistants/{assistantId} : Récupère un assistant spécifique.
+DELETE /api/v2/assistants/{assistantId} : Supprime un assistant.
+PATCH /api/v2/assistants/{assistantId} : Met à jour un assistant.
+GET /api/v2/assistants/{assistantId}/queues : Récupère toutes les queues associées à un assistant.
+PATCH /api/v2/assistants/{assistantId}/queues : Met à jour les queues pour un assistant.
+DELETE /api/v2/assistants/{assistantId}/queues/{queueId} : Dissocie une queue d'un assistant.
+PUT /api/v2/assistants/{assistantId}/queues/{queueId} : Associe une queue à un assistant.
+
+Voici Controller:
+using Microsoft.AspNetCore.Mvc;
+using PureCloudPlatform.Client.V2.Api;
+using PureCloudPlatform.Client.V2.Model;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace YourNamespace.Controllers
+{
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AssistantsController : ControllerBase
+    {
+        private readonly AgentAssistantsApi _assistantApi;
+
+        public AssistantsController()
+        {
+            _assistantApi = new AgentAssistantsApi(); // Assurez-vous que l'API Genesys est correctement configurée
+        }
+
+        // GET: api/Assistants
+        [HttpGet]
+        public async Task<IActionResult> GetAssistants([FromQuery] string before, [FromQuery] string after, [FromQuery] int? pageSize, [FromQuery] string name)
+        {
+            try
+            {
+                var result = await _assistantApi.GetAssistantsAsync(before, after, null, pageSize?.ToString(), name);
+                return Ok(result.Entities);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erreur lors de l'obtention des assistants: {ex.Message}");
+            }
+        }
+
+        // POST: api/Assistants
+        [HttpPost]
+        public async Task<IActionResult> CreateAssistant([FromBody] Assistant assistant)
+        {
+            try
+            {
+                var result = await _assistantApi.PostAssistantsAsync(assistant);
+                return CreatedAtAction(nameof(GetAssistant), new { assistantId = result.Id }, result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erreur lors de la création de l'assistant: {ex.Message}");
+            }
+        }
+
+        // GET: api/Assistants/{assistantId}
+        [HttpGet("{assistantId}")]
+        public async Task<IActionResult> GetAssistant(string assistantId)
+        {
+            try
+            {
+                var assistant = await _assistantApi.GetAssistantAsync(assistantId);
+                if (assistant == null)
+                {
+                    return NotFound();
+                }
+                return Ok(assistant);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erreur lors de l'obtention de l'assistant: {ex.Message}");
+            }
+        }
+
+        // DELETE: api/Assistants/{assistantId}
+        [HttpDelete("{assistantId}")]
+        public async Task<IActionResult> DeleteAssistant(string assistantId)
+        {
+            try
+            {
+                await _assistantApi.DeleteAssistantAsync(assistantId);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erreur lors de la suppression de l'assistant: {ex.Message}");
+            }
+        }
+
+        // PATCH: api/Assistants/{assistantId}
+        [HttpPatch("{assistantId}")]
+        public async Task<IActionResult> UpdateAssistant(string assistantId, [FromBody] Assistant assistant)
+        {
+            try
+            {
+                await _assistantApi.PatchAssistantAsync(assistantId, assistant);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erreur lors de la mise à jour de l'assistant: {ex.Message}");
+            }
+        }
+
+        // GET: api/Assistants/{assistantId}/queues
+        [HttpGet("{assistantId}/queues")]
+        public async Task<IActionResult> GetQueuesForAssistant(string assistantId)
+        {
+            try
+            {
+                var result = await _assistantApi.GetAssistantsQueuesAsync(assistantId);
+                return Ok(result.Entities);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erreur lors de l'obtention des queues pour l'assistant: {ex.Message}");
+            }
+        }
+
+        // PATCH: api/Assistants/{assistantId}/queues
+        [HttpPatch("{assistantId}/queues")]
+        public async Task<IActionResult> UpdateQueuesForAssistant(string assistantId, [FromBody] List<string> queueIds)
+        {
+            try
+            {
+                await _assistantApi.PatchAssistantsQueuesAsync(assistantId, queueIds);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erreur lors de la mise à jour des queues pour l'assistant: {ex.Message}");
+            }
+        }
+
+        // DELETE: api/Assistants/{assistantId}/queues/{queueId}
+        [HttpDelete("{assistantId}/queues/{queueId}")]
+        public async Task<IActionResult> DeleteQueueFromAssistant(string assistantId, string queueId)
+        {
+            try
+            {
+                await _assistantApi.DeleteAssistantsQueueAsync(assistantId, queueId);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erreur lors de la suppression de la queue de l'assistant: {ex.Message}");
+            }
+        }
+
+        // PUT: api/Assistants/{assistantId}/queues/{queueId}
+        [HttpPut("{assistantId}/queues/{queueId}")]
+        public async Task<IActionResult> AssociateQueueWithAssistant(string assistantId, string queueId)
+        {
+            try
+            {
+                await _assistantApi.PutAssistantsQueueAsync(assistantId, queueId);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erreur lors de l'association de la queue à l'assistant: {ex.Message}");
+            }
+        }
+    }
+}
+
