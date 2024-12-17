@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CRUDWithWebApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+304c3a298fc70ad48490d10006c46430f43c8bbd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e31dbf883620fda48e4a90849b846d9f4ed4998")]
 [assembly: System.Reflection.AssemblyProductAttribute("CRUDWithWebApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CRUDWithWebApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

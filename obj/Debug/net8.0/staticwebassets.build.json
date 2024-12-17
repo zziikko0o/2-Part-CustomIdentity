@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jeMEVjN2YYeeBRzGQuNm/T43H39faQNF2c5wAcQLALA=",
+  "Hash": "K++U2nleoRm5wCFLrxCdRI18QPlK+o7pReaEJ2WzkBw=",
   "Source": "CRUDWithWebApi",
   "BasePath": "_content/CRUDWithWebApi",
   "Mode": "Default",
@@ -111,6 +111,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\SahibiZ\\Desktop\\Genesys\\CustomIdentity\\wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\SahibiZ\\Desktop\\Genesys\\CustomIdentity\\wwwroot\\js\\JavaScript.js",
+      "SourceId": "CustomIdentity",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\SahibiZ\\Desktop\\Genesys\\CustomIdentity\\wwwroot\\",
+      "BasePath": "_content/CustomIdentity",
+      "RelativePath": "js/JavaScript#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "osesemdhhu",
+      "Integrity": "6C/0DhweYskzr9Je8focwWCyTxaBxRRuC8KmMNq/jAE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\SahibiZ\\Desktop\\Genesys\\CustomIdentity\\wwwroot\\js\\JavaScript.js"
     },
     {
       "Identity": "C:\\Users\\SahibiZ\\Desktop\\Genesys\\CustomIdentity\\wwwroot\\js\\site.js",
@@ -1575,6 +1596,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM="
+        }
+      ]
+    },
+    {
+      "Route": "_content/CustomIdentity/js/JavaScript.js",
+      "AssetFile": "C:\\Users\\SahibiZ\\Desktop\\Genesys\\CustomIdentity\\wwwroot\\js\\JavaScript.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "71"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6C/0DhweYskzr9Je8focwWCyTxaBxRRuC8KmMNq/jAE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 13:55:16 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-6C/0DhweYskzr9Je8focwWCyTxaBxRRuC8KmMNq/jAE="
+        }
+      ]
+    },
+    {
+      "Route": "_content/CustomIdentity/js/JavaScript.osesemdhhu.js",
+      "AssetFile": "C:\\Users\\SahibiZ\\Desktop\\Genesys\\CustomIdentity\\wwwroot\\js\\JavaScript.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "71"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"6C/0DhweYskzr9Je8focwWCyTxaBxRRuC8KmMNq/jAE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 16 Dec 2024 13:55:16 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "osesemdhhu"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-6C/0DhweYskzr9Je8focwWCyTxaBxRRuC8KmMNq/jAE="
+        },
+        {
+          "Name": "label",
+          "Value": "_content/CustomIdentity/js/JavaScript.js"
         }
       ]
     },
