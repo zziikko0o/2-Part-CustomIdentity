@@ -31,7 +31,9 @@ namespace CRUDWithWebApi.DataAccessLayer
     }
 }
 - il faut ajouter dans appsettings.json:
-    "default": "Server=(localdb)\\mssqllocaldb;Database=CRUDWithWebApi;Trusted_Connection=True;MultipleActiveResultSets=true;"
+    "ConnectionStrings": {
+   "default": "Server=(localdb)\\mssqllocaldb;Database=WebApi;Trusted_Connection=True;MultipleActiveResultSets=true;"
+ }
 Puis dans Program.cs:
 var connectingString = builder.Configuration.GetConnectionString("default");
 
