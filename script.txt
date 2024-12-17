@@ -30,6 +30,15 @@ namespace CRUDWithWebApi.DataAccessLayer
         public DbSet<Product> Products { get; set; }
     }
 }
+- il faut ajouter dans appsettings.json:
+    "ConnectionStrings": {
+   "default": "Server=(localdb)\\mssqllocaldb;Database=WebApi;Trusted_Connection=True;MultipleActiveResultSets=true;"
+ }
+Puis dans Program.cs:
+var connectingString = builder.Configuration.GetConnectionString("default");
+
+builder.Services.AddDbContext<WebApiDbContext>(options =>
+options.UseSqlServer(connectingString));
 
 - Creer datatable:Nuget Console: add-migration Initial, apres update-database
 si ca marche pas (Nettoyer la solution :Allez dans le menu Build puis sélectionnez Clean Solution)
@@ -43,7 +52,7 @@ Add-Migration InitialCreate -Project CRUDWithWebApi -StartupProject CustomIdenti
 
 ****************************************** Maintenant Revenir sur Projet MVC:******************************************
 -Creer une classe dans modele Nom:ProductViewModel:
-Copier les proprietes de Products.cs du Projet WebAPI dans ProductViewModel et ajouter ces modif aussi:
+Copier les proprietes de Models=>Products.cs du Projet WebAPI dans ProductViewModel et ajouter ces modif aussi:
 
 public int Id { get; set; }
 [Required]
