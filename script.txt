@@ -30,6 +30,13 @@ namespace CRUDWithWebApi.DataAccessLayer
         public DbSet<Product> Products { get; set; }
     }
 }
+- il faut ajouter dans appsettings.json:
+    "default": "Server=(localdb)\\mssqllocaldb;Database=CRUDWithWebApi;Trusted_Connection=True;MultipleActiveResultSets=true;"
+Puis dans Program.cs:
+var connectingString = builder.Configuration.GetConnectionString("default");
+
+builder.Services.AddDbContext<WebApiDbContext>(options =>
+options.UseSqlServer(connectingString));
 
 - Creer datatable:Nuget Console: add-migration Initial, apres update-database
 si ca marche pas (Nettoyer la solution :Allez dans le menu Build puis sélectionnez Clean Solution)
