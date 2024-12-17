@@ -52,7 +52,7 @@ Add-Migration InitialCreate -Project CRUDWithWebApi -StartupProject CustomIdenti
 
 ****************************************** Maintenant Revenir sur Projet MVC:******************************************
 -Creer une classe dans modele Nom:ProductViewModel:
-Copier les proprietes de Products.cs du Projet WebAPI dans ProductViewModel et ajouter ces modif aussi:
+Copier les proprietes de Models=>Products.cs du Projet WebAPI dans ProductViewModel et ajouter ces modif aussi:
 
 public int Id { get; set; }
 [Required]
