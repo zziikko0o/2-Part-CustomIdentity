@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "havDrtJ9vYjzSUUCLA7c4MRT34mIlw7mn2czMrKfeC4=",
+  "Hash": "jeMEVjN2YYeeBRzGQuNm/T43H39faQNF2c5wAcQLALA=",
   "Source": "CRUDWithWebApi",
   "BasePath": "_content/CRUDWithWebApi",
   "Mode": "Default",
@@ -111,27 +111,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\SahibiZ\\Desktop\\Genesys\\CustomIdentity\\wwwroot\\favicon.ico"
-    },
-    {
-      "Identity": "C:\\Users\\SahibiZ\\Desktop\\Genesys\\CustomIdentity\\wwwroot\\js\\CustomJS.js",
-      "SourceId": "CustomIdentity",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\SahibiZ\\Desktop\\Genesys\\CustomIdentity\\wwwroot\\",
-      "BasePath": "_content/CustomIdentity",
-      "RelativePath": "js/CustomJS#[.{fingerprint}]?.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "Fingerprint": "osesemdhhu",
-      "Integrity": "6C/0DhweYskzr9Je8focwWCyTxaBxRRuC8KmMNq/jAE=",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "C:\\Users\\SahibiZ\\Desktop\\Genesys\\CustomIdentity\\wwwroot\\js\\CustomJS.js"
     },
     {
       "Identity": "C:\\Users\\SahibiZ\\Desktop\\Genesys\\CustomIdentity\\wwwroot\\js\\site.js",
@@ -1462,7 +1441,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 15 Dec 2024 16:35:44 GMT"
+          "Value": "Tue, 17 Dec 2024 13:31:33 GMT"
         }
       ],
       "EndpointProperties": [
@@ -1507,7 +1486,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Sun, 15 Dec 2024 16:35:44 GMT"
+          "Value": "Tue, 17 Dec 2024 13:31:33 GMT"
         }
       ],
       "EndpointProperties": [
@@ -1596,88 +1575,6 @@
         {
           "Name": "integrity",
           "Value": "sha256-Jtxf9L+5ITKRc1gIRl4VbUpGkRNfOBXjYTdhJD4facM="
-        }
-      ]
-    },
-    {
-      "Route": "_content/CustomIdentity/js/CustomJS.js",
-      "AssetFile": "C:\\Users\\SahibiZ\\Desktop\\Genesys\\CustomIdentity\\wwwroot\\js\\CustomJS.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "71"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"6C/0DhweYskzr9Je8focwWCyTxaBxRRuC8KmMNq/jAE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 16 Dec 2024 13:57:11 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-6C/0DhweYskzr9Je8focwWCyTxaBxRRuC8KmMNq/jAE="
-        }
-      ]
-    },
-    {
-      "Route": "_content/CustomIdentity/js/CustomJS.osesemdhhu.js",
-      "AssetFile": "C:\\Users\\SahibiZ\\Desktop\\Genesys\\CustomIdentity\\wwwroot\\js\\CustomJS.js",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "71"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"6C/0DhweYskzr9Je8focwWCyTxaBxRRuC8KmMNq/jAE=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Mon, 16 Dec 2024 13:57:11 GMT"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "osesemdhhu"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-6C/0DhweYskzr9Je8focwWCyTxaBxRRuC8KmMNq/jAE="
-        },
-        {
-          "Name": "label",
-          "Value": "_content/CustomIdentity/js/CustomJS.js"
         }
       ]
     },
